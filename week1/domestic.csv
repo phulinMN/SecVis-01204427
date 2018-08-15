@@ -1,4 +1,4 @@
-ASN-source,ASN,Name,Type,Bandwidth,Gb/s,Connectivity Type
+ASN-Source,ASN,Name,Type,Bandwidth,Gb/s,Connectivity Type
 AS4652,AS45265,CSL-IX,NIX,50,Gbps,IPv6 Dual Stack
 AS4652,AS38081,TIG-IX,NIX,10,Gbps,IPv4
 AS4652,AS45667,TCCT-IX,NIX,1,Gbps,IPv6 Dual Stack
