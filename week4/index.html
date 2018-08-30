@@ -28,10 +28,13 @@
             </div>
         </div>
         <div class="row">
-                <div id="ip-interval" class="show-ip"></div>
-            </div>
-        <div class="row">
             <div id="login-logout" class="show-ip"></div>
+        </div>
+        <div class="row">
+            <div id="ip-interval" class="show-ip"></div>
+        </div>
+        <div class="row">
+            <div id="server" class="show-ip"></div>
         </div>
         <div class="row">
             <div id="user" class="show-ip"></div>
@@ -367,7 +370,70 @@
             ]
         }, true);
     </script>
-
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('server'));
+        myChart.showLoading();
+        // $.getJSON('./domestic.json', function (json) {
+        myChart.hideLoading();
+        myChart.setOption(option = {
+            title: {
+                text: 'Server'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['number of userid login']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['line', 'bar']
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: true,
+            xAxis: {
+                type: 'category',
+                data: ['::ffff:158.108.218.201', '::ffff:158.108.218.202', '::ffff:158.108.218.203',
+                    '::ffff:158.108.218.204', '::ffff:158.108.218.205', '::ffff:158.108.218.206',
+                    '::ffff:158.108.218.207', '::ffff:158.108.218.208', '::ffff:158.108.218.209',
+                    '::ffff:158.108.218.210', '::ffff:158.108.218.211', '::ffff:158.108.218.212'
+                ]
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [644, 643, 553, 665, 570, 570, 589, 567, 548, 592, 523, 673],
+                type: 'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: "inside"
+                    }
+                },
+                markLine: {
+                    data: [{
+                        type: 'average',
+                        name: 'server'
+                    }]
+                }
+            }]
+        }, true);
+    </script>
     <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('user'));
         myChart.showLoading();
