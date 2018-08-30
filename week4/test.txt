@@ -1,0 +1,26 @@
+cat login-20170102-anon.csv.txt | cut -d' ' -f6,7 | grep -v "-" | wc -l
+dual stack: 3127
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f6,7 | grep "^-" | wc -l
+ipv6: 10
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f6,7 | grep " -" | wc -l
+ipv4: 4000
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f1 | sort --unique | wc -l
+login: 3638
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f3 | sort --unique | wc -l
+user: 1668
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f4 | sort --unique | wc -l
+logout: 3260
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f6,7 | grep " -" | sort --unique | wc -l
+IPV4: 1320
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f6,7 | grep "^-" | sort --unique | wc -l
+IPV6: 5
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f6,7 | grep -v "-" | sort --unique | wc -l
+Dual Stack: 1132
