@@ -1,7 +1,6 @@
 import datetime
 import json
 
-
 all_time = {}
 user_time = {}
 arr_lines = []
@@ -18,37 +17,17 @@ def convert_time(unix_time):
     return date
 
 def gen_time():
-    for i in range(24):
-        if i < 10:
-            k = '0' + str(i) + ':00'
-            all_time[k] = 0
-            k = '0' + str(i) + ':15'
-            all_time[k] = 0
-            k = '0' + str(i) + ':30'
-            all_time[k] = 0
-            k = '0' + str(i) + ':45'
-            all_time[k] = 0
-        else:
-            k = str(i) + ':00'
-            all_time[k] = 0
-            k = str(i) + ':15'
-            all_time[k] = 0
-            k = str(i) + ':30'
-            all_time[k] = 0
-            k = str(i) + ':45'
-            all_time[k] = 0
+    x = 0
+    for i in range(96):
+        all_time[x] = 0
+        x += 15
 
 def interval_time(start,end):
-    s = start[1].split(':')
-    e = end[1].split(':')
-    # print(s)
+    s = int(start[1].split(':')[0])*60 + int(start[1].split(':')[1])
+    e = int(end[1].split(':')[0])*60 + int(end[1].split(':')[1])
     for i in all_time:
-        h_start = int(i.split(':')[0])
-        h_end = int(i.split(':')[0]) + 1
-        # print(i)
-        if int(s[0]) >= h_start and int(s[0]) < h_end:
-            if(int(s[1]) >= int(i.split(':')[1]) and int(s[1]) < int(i.split(':')[0])+15):
-                all_time[i] += 1
+        if s >= i and e < i:
+            all_time[i] += 1
 
 gen_time()
 for i in arr_lines:
@@ -61,13 +40,22 @@ for i in arr_lines:
             "time_logout": logout
         }
         interval_time(login,logout)
-print(all_time)
+# print(all_time)
 data = []
 for i in all_time:
+    x = int(i/60)
+    y = i%60
+    if x < 10:
+        x = '0' + str(x)
+    if y < 10:
+        y = '0' + str(y)
+    t = str(x) + ':' + str(y)
+    # print(t)
     item = []
-    item.append(i)
+    item.append(t)
     item.append(all_time[i])
     data.append(item)
+# print(data)
 
 with open('data.json', 'w') as outfile:
     json.dump(data, outfile)
