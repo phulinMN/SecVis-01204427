@@ -25,8 +25,10 @@
                 animationEasingUpdate: 'quinticInOut',
                 series: [{
                     type: 'graph',
-                    layout: 'circular',
+                    layout: 'force',
+                    animation: false,
                     // progressiveThreshold: 700,
+                    draggable: true,
                     data: json.nodes.map(function (node) {
                         return {
                             x: node.x,
@@ -47,6 +49,13 @@
                             target: edge.targetID
                         };
                     }),
+                    force: {
+                        // initLayout: 'circular'
+                        // repulsion: 20,
+                        edgeLength: 5,
+                        repulsion: 5000,
+                        gravity: 0.2
+                    },
                     label: {
                         emphasis: {
                             position: 'right',
