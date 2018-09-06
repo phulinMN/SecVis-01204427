@@ -19,7 +19,25 @@
 <body style="height: 100%; margin: 0">
     <div class="container">
         <h1>3.4 hostname (http ingress request)</h1>
-        <div style="height: 700px"></div>
+        <div id="hostname" style="height: 700px"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('hostname'));
+            myChart.showLoading();
+            $.get('./data/ingress_hostname.json', function (json) {
+                myChart.hideLoading();
+                myChart.setOption(option = {
+                    series: [{
+                        type: 'treemap',
+                        data: json.map(function (data) {
+                            return {
+                                name: data.name,
+                                value: data.value
+                            };
+                        })
+                    }]
+                });
+            });
+        </script>
     </div>
 </body>
 

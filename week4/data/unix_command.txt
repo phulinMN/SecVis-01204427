@@ -1,5 +1,6 @@
 wc -l *
 cat web-anon-201704100300.0.txt | cut -d' ' -f5 | sort | uniq -c >> ../data/user_request.txt
+cat web-anon-201704100300.0.txt | cut -d' ' -f1,5,11,12,15,17 | grep -v ".*\-" >> ../data/3_2_data.txt
 cat web-anon-2017041003* | cut -d' ' -f11,17 | grep "^158\.108\|^10\.\|^2406:3100:" | sort | uniq -c >> ../data/egress_hostname.txt
 cat web-anon-2017041003* | cut -d' ' -f11,17 | grep -v "^158\.108\|^10\.\|^2406:3100:" | sort | uniq -c >> ../data/ingress_hostname.txt
 cat web-anon-2017041003* | cut -d' ' -f11,18 | grep "^158\.108\|^10\.\|^2406:3100:" | grep -v '.*-$' >> ../data/egress_path.txt
