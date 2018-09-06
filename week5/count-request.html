@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../echart/echarts.min.js"></script>
+</head>
+
+<body style="height: 100%; margin: 0">
+    <div class="container">
+        <h1>count</h1>
+        <div id="count" style="height: 700px"></div>
+    </div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('count'));
+        myChart.showLoading();
+        $.get('./data/count_request.json', function (data) {
+            myChart.hideLoading();
+            myChart.setOption(option = {
+                // backgroundColor: '#2c343c',
+                title: {
+                    text: 'Request'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    data: data.map(function (item) {
+                        return item[0];
+                    })
+                },
+                yAxis: {
+                    splitLine: {
+                        show: false
+                    }
+                },
+                toolbox: {
+                    left: 'center',
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                dataZoom: [{
+                    startValue: '03:00'
+                }, {
+                    type: 'inside'
+                }],
+                series: {
+                    name: 'number of request',
+                    type: 'line',
+                    markPoint: {
+                        data: [{
+                            type: 'max',
+                        }, {
+                            type: 'min'
+                        }]
+                    },
+                    data: data.map(function (item) {
+                        return item[1];
+                    }),
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            }
+                        }
+                    },
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
