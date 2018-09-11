@@ -20,7 +20,7 @@
 
 <body style="height: 100%; margin: 0">
     <div class="container">
-        <h1>count</h1>
+        <h1>Request per min.</h1>
         <div id="count" style="height: 700px"></div>
     </div>
     <script type="text/javascript">
@@ -30,13 +30,11 @@
             myChart.hideLoading();
             myChart.setOption(option = {
                 // backgroundColor: '#2c343c',
-                title: {
-                    text: 'Request'
-                },
                 tooltip: {
                     trigger: 'axis'
                 },
                 xAxis: {
+                    boundaryGap: false,
                     data: data.map(function (item) {
                         return item[0];
                     })

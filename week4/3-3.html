@@ -26,7 +26,7 @@
     <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('hostname'));
         myChart.showLoading();
-        $.get('./data/egress_hostname.json', function (json) {
+        $.get('./data/e_hostname.json', function (json) {
             myChart.hideLoading();
             myChart.setOption(option = {
                 series: [{

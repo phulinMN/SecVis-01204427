@@ -21,13 +21,38 @@
 <body style="height: 100%; margin: 0">
     <div class="container">
         <h1>3.5 requested filetype (http egress request)</h1>
+        <h1>{"value": 120441, "name": "Unknown"}</h1>
         <div id="hostname" style="height: 700px"></div>
         <script type="text/javascript">
             var myChart = echarts.init(document.getElementById('hostname'));
             myChart.showLoading();
-            $.get('./data/path_ingress.json', function (json) {
+            var count_all = 0
+            $.get('./data/5data.json', function (json) {
+                for (var i = 0; i < json.length; i++) {
+                    count_all += json[i].value
+                }
+            });
+            $.get('./data/5data.json', function (json) {
+                var formatUtil = echarts.format;
                 myChart.hideLoading();
                 myChart.setOption(option = {
+                    tooltip: {
+                        formatter: function (info) {
+                            var value = info.value;
+                            var treePathInfo = info.treePathInfo;
+                            var treePath = [];
+
+                            for (var i = 1; i < treePathInfo.length; i++) {
+                                treePath.push(treePathInfo[i].name);
+                            }
+
+                            return [
+                                '<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join(
+                                    '/')) + '</div>', +formatUtil.addCommas((value / count_all *
+                                    100).toFixed(2)) + ' %',
+                            ].join('');
+                        }
+                    },
                     series: [{
                         type: 'treemap',
                         data: json.map(function (data) {
