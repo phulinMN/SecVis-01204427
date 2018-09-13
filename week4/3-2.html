@@ -15,15 +15,15 @@
 
 <body style="height: 100%; margin: 0">
     <div id="nav-placeholder"></div>
+    <div class="container">
+        <h1>3.2. List all request of the topmost user at 03.00 AM.</h1>
+        <div id="graph" style="height: 700px"></div>
+    </div>
     <script type="text/javascript">
         $(function () {
             $("#nav-placeholder").load("../nav.html");
         });
     </script>
-    <div class="container">
-        <h1>3.2. List all request of the topmost user at 03.00 AM.</h1>
-        <div id="graph" style="height: 700px"></div>
-    </div>
     <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('graph'));
         myChart.showLoading();

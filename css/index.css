@@ -1,3 +1,13 @@
 * {
     font-family: 'Quicksand', sans-serif;
 }
+.btn-link, a {
+    color: white;
+}
+.btn-link:focus, .btn-link:active, .btn-link:hover, a:focus, a:active, a:hover {
+    text-decoration: none;
+    color: #B2B2B2;
+}
+.bg-secondary {
+    background-color: #4E5760!important;
+}
